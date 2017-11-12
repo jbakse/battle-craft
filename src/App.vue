@@ -2,29 +2,25 @@
   <div id="app">
     <div class="screen">
       <character-status
-      v-bind="character1"
+        v-bind="character1"
       />
-      
       <battle-bench 
-      v-on:attacksCrafted="onAttacksCrafted"
-      :workbenchItems="character1.workbench"
-      :inventoryItems="character1.inventory"
-      :owner="character1"
+        :workbenchItems="character1.workbench"
+        :inventoryItems="character1.inventory"
       >
       </battle-bench>
+      <button class="craft" v-on:click="craft(character1)">Craft!</button>
     </div>
     <div class="screen">
       <character-status
-      v-bind="character2"
+        v-bind="character2"
       />
-       
       <battle-bench
-      v-on:attacksCrafted="onAttacksCrafted"
-      :workbenchItems="character2.workbench"
-      :inventoryItems="character2.inventory"
-      :owner="character2"
+        :workbenchItems="character2.workbench"
+        :inventoryItems="character2.inventory"
       >
       </battle-bench>
+      <button class="craft" v-on:click="craft(character2)">Craft!</button>
     </div>
 
   </div>
@@ -79,14 +75,30 @@ export default {
     };
   },
   methods: {
-    onAttacksCrafted(crafter, attacks) {
-      console.log(`${crafter} attacks ${crafter.target}`);
-      // attacks.forEach(attack => {
-      //   crafter.target.applyAttack(attack);
-      // });
-      attacks.forEach(attack => {
-        crafter.target.applyAttack(attack);
+    craft(crafter) {
+      if (crafter.workbench.length !== 3) {
+        return console.error("wrong number of items");
+      }
+
+      // craft
+      let a = crafter.workbench.shift();
+      let b = crafter.workbench.shift();
+      let c = crafter.workbench.shift();
+      let { items, attacks } = crafter.craft(a, b, c);
+
+      // add items to inventory
+      items.forEach(item => {
+        console.log(`${crafter} crafted a level ${item.level} ${item.name}`);
+        crafter.inventory.push(item);
       });
+
+      // dole out damage
+      if (attacks.length > 0) {
+        console.log(`${crafter} attacks ${crafter.target}`);
+        attacks.forEach(attack => {
+          crafter.target.applyAttack(attack);
+        });
+      }
     }
   }
 };
@@ -118,5 +130,13 @@ body {
   height: 640px;
   box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.25);
   /* border: 1px solid blue; */
+}
+button.craft {
+  width: 300px;
+  height: 64px;
+  margin: 10px;
+  border-radius: 5px;
+  background: white;
+  border: 1px solid gray;
 }
 </style>

@@ -28,7 +28,6 @@
     </div>
     <div class="actions">
       <button v-on:click="shuffle">Shuffle!</button>
-      <button v-on:click="craft">Craft!</button>
     </div>
   </div>
 </template>
@@ -47,7 +46,7 @@ function removeFirst(array, item) {
 
 export default {
   name: "battle-bench",
-  props: ["inventoryItems", "workbenchItems", "owner"],
+  props: ["inventoryItems", "workbenchItems"],
   components: {
     Item
   },
@@ -68,26 +67,6 @@ export default {
       let result = removeFirst(this.inventoryItems, clicked.item);
       if (result) {
         this.workbenchItems.push(clicked.item);
-      }
-    },
-
-    craft() {
-      if (this.workbenchItems.length !== 3) {
-        return console.error("wrong noumber of items");
-      }
-      let a = this.workbenchItems.shift();
-      let b = this.workbenchItems.shift();
-      let c = this.workbenchItems.shift();
-
-      let { items, attacks } = this.owner.craft(a, b, c);
-
-      items.forEach(item => {
-        console.log(`${this.owner} crafted a level ${item.level} ${item.name}`);
-        this.inventoryItems.push(item);
-      });
-
-      if (attacks.length > 0) {
-        this.$emit("attacksCrafted", this.owner, attacks);
       }
     },
 
@@ -113,14 +92,14 @@ export default {
 
   background-color: #ccc;
 }
-.workbench div {
+.workbench > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   /* overflow: hidden; */
 }
 
-.inventory div {
+.inventory > div {
   background: #eee;
   margin: 0;
   padding: 0;

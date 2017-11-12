@@ -1,6 +1,5 @@
 import * as _ from "lodash";
 
-
 let characterId = 0;
 export class Character {
   id = 0;
@@ -11,27 +10,25 @@ export class Character {
   workbench = [];
   target = undefined;
 
-  constructor(name) {
+  constructor (name) {
     this.name = name;
     this.id = ++characterId;
   }
 
-  toString() {
+  toString () {
     return `${this.name}:${this.id}`;
   }
 
-
-  craft(a, b, c) {
-
+  craft (a, b, c) {
     console.log(`${this.name} crafts ${a} + ${b} + ${c}`);
     let items = [];
     let attacks = [];
 
-    if (a.type == "attack") {
+    if (a.type === "attack") {
       attacks.push(new Attack(a.level + b.level + c.level));
     }
 
-    if (a.type == "craft") {
+    if (a.type === "craft") {
       let level = b.level + c.level;
       level = Math.min(5, level);
       let type = b.type;
@@ -51,12 +48,8 @@ export class Character {
       }
 
       for (let i = 0; i < a.level; i++) {
-
         items.push(new Item(`c:${name}`, level, type));
-
       }
-
-
     }
 
     return {
@@ -65,7 +58,7 @@ export class Character {
     }
   }
 
-  applyAttack(attack) {
+  applyAttack (attack) {
     let damage = attack.value - this.armor;
     damage = Math.max(0, damage);
     this.hp -= damage;
@@ -82,19 +75,19 @@ export class Item {
   elements = [];
   specials = [];
 
-  constructor(name, level = 0, type = "craft") {
+  constructor (name, level = 0, type = "craft") {
     this.name = name;
     this.level = level;
     this.type = type;
     this.id = ++itemId;
   }
 
-  toString() {
+  toString () {
     return `${this.name}:${this.id}`;
   }
 }
 
-export function createLibraryItem(name) {
+export function createLibraryItem (name) {
   let item;
   if (itemLibrary[name]) {
     item = _.cloneDeep(itemLibrary[name]);
@@ -117,8 +110,7 @@ let itemLibrary = {
 
 export class Attack {
   value = 1;
-  constructor(value = 1) {
+  constructor (value = 1) {
     this.value = value;
   }
 }
-
