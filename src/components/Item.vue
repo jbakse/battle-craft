@@ -1,9 +1,7 @@
 <template>
-  <div v-bind:class="'item ' + item.type" v-on:click="onClick">
+  <div class="item" v-bind:class="item.type" v-on:click="onClick">
     {{name}}
-    
     <div class="level">{{item.level}}</div>
-    
   </div>
 </template>
 
@@ -12,21 +10,15 @@ export default {
   name: "item",
   props: ["name", "item"],
   methods: {
-    onClick() {
+    onClick () {
       this.$emit("onClick", this);
     }
   }
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-.attack {
-  border: 6px solid red;
-}
-.craft {
-  border: 6px solid blue;
-}
 .item {
   width: 60px;
   height: 60px;
@@ -43,19 +35,29 @@ export default {
   line-height: 16px;
   font-size: 8px;
 
-  /* position: relative; */
+  user-select: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.item.attack {
+  border: 6px solid red;
+}
+
+.item.craft {
+  border: 6px solid blue;
 }
 
 .level {
-  /* border: 1px solid orange; */
   height: 18px;
   width: 18px;
   line-height: 18px;
-  /* position: absolute; */
+  position: absolute;
   right: -9px;
   bottom: -9px;
   font-size: 12px;
   background-color: orange;
   border-radius: 9px;
 }
+
 </style>

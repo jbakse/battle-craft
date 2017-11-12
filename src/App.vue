@@ -27,10 +27,9 @@
 </template>
 
 <script>
-import { Character, Item, createLibraryItem } from "./battle-craft.js";
+import { data } from "./battle-craft.js";
 import BattleBench from "./components/BattleBench";
 import CharacterStatus from "./components/CharacterStatus";
-import * as _ from "lodash";
 
 export default {
   name: "app",
@@ -39,43 +38,13 @@ export default {
     CharacterStatus
   },
   data: () => {
-    let character1 = new Character("justin");
-    character1.inventory.push(createLibraryItem("pebble"));
-    character1.inventory.push(createLibraryItem("pebble"));
-    character1.inventory.push(createLibraryItem("pebble"));
-    character1.inventory.push(createLibraryItem("pebble"));
-    character1.inventory.push(createLibraryItem("pebble"));
-    character1.inventory.push(createLibraryItem("pebble"));
-    character1.inventory.push(createLibraryItem("pebble"));
-    character1.inventory.push(createLibraryItem("rock"));
-    character1.inventory.push(createLibraryItem("boulder"));
-    character1.inventory.push(createLibraryItem("glue"));
-    character1.inventory.push(createLibraryItem("glue"));
-    character1.inventory.push(createLibraryItem("superglue"));
-
-    let character2 = new Character("greg");
-    character2.inventory.push(createLibraryItem("pebble"));
-    character2.inventory.push(createLibraryItem("pebble"));
-    character2.inventory.push(createLibraryItem("pebble"));
-    character2.inventory.push(createLibraryItem("pebble"));
-    character2.inventory.push(createLibraryItem("pebble"));
-    character2.inventory.push(createLibraryItem("pebble"));
-    character2.inventory.push(createLibraryItem("pebble"));
-    character2.inventory.push(createLibraryItem("rock"));
-    character2.inventory.push(createLibraryItem("boulder"));
-    character2.inventory.push(createLibraryItem("glue"));
-    character2.inventory.push(createLibraryItem("glue"));
-    character2.inventory.push(createLibraryItem("superglue"));
-
-    character1.target = character2;
-    character2.target = character1;
     return {
-      character1,
-      character2
+      character1: data.character1,
+      character2: data.character2
     };
   },
   methods: {
-    craft(crafter) {
+    craft (crafter) {
       if (crafter.workbench.length !== 3) {
         return console.error("wrong number of items");
       }

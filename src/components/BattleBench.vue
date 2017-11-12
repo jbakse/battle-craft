@@ -33,11 +33,11 @@
 </template>
 
 <script>
-import * as BC from "../battle-craft.js";
+
 import Item from "./Item";
 import * as _ from "lodash";
 
-function removeFirst(array, item) {
+function removeFirst (array, item) {
   let i = array.indexOf(item);
   if (i < 0) return false;
   array.splice(i, 1);
@@ -54,23 +54,21 @@ export default {
     return {};
   },
   methods: {
-    onWorkbenchItemClicked(clicked) {
+    onWorkbenchItemClicked (clicked) {
       let result = removeFirst(this.workbenchItems, clicked.item);
       if (result) {
         this.inventoryItems.push(clicked.item);
       }
     },
 
-    onInventoryItemClicked(clicked) {
-      console.log(this.inventoryItems);
-
+    onInventoryItemClicked (clicked) {
       let result = removeFirst(this.inventoryItems, clicked.item);
       if (result) {
         this.workbenchItems.push(clicked.item);
       }
     },
 
-    shuffle() {
+    shuffle () {
       console.log("shuffle");
       this.inventoryItems = _.shuffle(this.inventoryItems);
     }
@@ -81,22 +79,17 @@ export default {
 <style>
 .battle-bench {
   width: 320px;
-
   background: white;
-
-  /* border: 1px solid orange; */
 }
 
 .workbench {
   height: 64px;
-
   background-color: #ccc;
 }
 .workbench > div {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /* overflow: hidden; */
 }
 
 .inventory > div {
@@ -104,9 +97,6 @@ export default {
   margin: 0;
   padding: 0;
   height: 192px;
-  /* display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start; */
 }
 
 .actions {
@@ -128,6 +118,6 @@ export default {
   transform: translateY(0px) scale(0.5);
 }
 .list-leave-active {
-  position: absolute;
+  position: absolute !important;
 }
 </style>

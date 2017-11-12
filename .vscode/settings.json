@@ -2,6 +2,7 @@
     "editor.formatOnSave": false,
     "eslint.autoFixOnSave": true,
     "eslint.enable": true,
+    "editor.tabSize": 2,
     "eslint.validate": [
         "javascript",
         "javascriptreact",
