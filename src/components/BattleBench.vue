@@ -96,7 +96,7 @@ export default {
   background: #eee;
   margin: 0;
   padding: 0;
-  height: 192px;
+  height: 256px;
 }
 
 .actions {

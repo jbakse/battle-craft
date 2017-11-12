@@ -1,18 +1,50 @@
 import * as _ from "lodash";
 
+// creatingItems
+
+// with ordered params
+// let item = new Item("sand", 1, "craft");
+
+// with named params
+// let item = new Item({name: "sand", level: 1, type: "craft"});
+
+// using existing item (extra properties discarded)
+// let item = new Item(existingItem);
+
+// with Item.clone (extra properties preserved)
+// let item = Item.clone(existingItem);
+
 let itemId = 0;
 export class Item {
     id = 0;
-    name = "unnamed";
-    level = 0;
-    type = "craft";
-    elements = [];
-    specials = [];
+    name;
+    level;
+    type;
+    elements;
+    specials;
 
     constructor (name, level = 0, type = "craft") {
-      this.name = name;
-      this.level = level;
-      this.type = type;
+      let defaults = {
+        name: "unnamed",
+        level: 0,
+        type: "craft",
+        elements: [],
+        craft: []
+      }
+
+      let params = {
+        name,
+        level,
+        type
+      }
+
+      if (_.isObject(name)) {
+        // discard extra properties
+        params = _.pick(name, _.keys(defaults));
+      }
+
+      _.defaults(this, params, defaults);
+
       this.id = ++itemId;
     }
 
@@ -55,5 +87,6 @@ let itemLibrary = {
   rock: new Item("rock", 2, "attack"),
   boulder: new Item("boulder", 4, "attack"),
   glue: new Item("glue", 1, "craft"),
-  superglue: new Item("superglue", 2, "craft")
+  superglue: new Item("superglue", 2, "craft"),
+  gem: new Item("gem", 2, "buff")
 }

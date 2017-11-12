@@ -5,3 +5,9 @@ window.addEventListener('message', function onWebpackMessage (e) {
   console.log("vue message");
 });
 ```
+
+
+Tricky concat with mutate?
+```
+arr1.push(...arr2);
+```

@@ -48,6 +48,10 @@ export default {
   border: 6px solid blue;
 }
 
+.item.buff {
+  border: 6px solid gray;
+}
+
 .level {
   height: 18px;
   width: 18px;

@@ -1,14 +1,17 @@
 import { Attack } from "./Attack";
 import { Item } from "./Item";
+import { Buff } from "./Buff";
 
 let characterId = 0;
 export class Character {
   id = 0;
   hp = 10;
   armor = 1;
+  attack = 0;
   name = "unnamed";
   inventory = [];
   workbench = [];
+  buffs = [];
   target = undefined;
 
   constructor (name) {
@@ -24,6 +27,7 @@ export class Character {
     console.log(`${this.name} crafts ${a} + ${b} + ${c}`);
     let items = [];
     let attacks = [];
+    let buffs = [];
 
     if (a.type === "attack") {
       attacks = attacks.concat(this.craftAttack(a, b, c).attacks);
@@ -33,9 +37,14 @@ export class Character {
       items = items.concat(this.craftItem(a, b, c).items);
     }
 
+    if (a.type === "buff") {
+      buffs = items.concat(this.craftBuff(a, b, c).buffs);
+    }
+
     return {
       items,
-      attacks
+      attacks,
+      buffs
     }
   }
 
@@ -60,6 +69,16 @@ export class Character {
     return { items };
   }
 
+  craftBuff (a, b, c) {
+    let buffs = [];
+    let buff = new Buff({
+      armor: Math.max(b.level, c.level)
+    });
+    console.log(`${this} crafts a ${buff} buff`);
+    buffs.push(buff);
+    return { buffs };
+  }
+
   craftAttack (a, b, c) {
     let attacks = [];
     let attack = new Attack(a.level + b.level + c.level);
@@ -73,5 +92,10 @@ export class Character {
     damage = Math.max(0, damage);
     this.hp -= damage;
     console.log(`${this} takes ${damage} damage`);
+  }
+
+  applyBuff (buff) {
+    console.log(`${this} gets ${buff} buff`);
+    this.buffs.push(buff);
   }
 }

@@ -53,7 +53,7 @@ export default {
       let a = crafter.workbench.shift();
       let b = crafter.workbench.shift();
       let c = crafter.workbench.shift();
-      let { items, attacks } = crafter.craft(a, b, c);
+      let { items, attacks, buffs } = crafter.craft(a, b, c);
 
       // add items to inventory
       items.forEach(item => {
@@ -68,16 +68,27 @@ export default {
           crafter.target.applyAttack(attack);
         });
       }
+
+      // apply buffs
+      if (buffs.length > 0) {
+        console.log(`${crafter} buffs ${crafter}`);
+        buffs.forEach(buff => {
+          crafter.applyBuff(buff);
+        });
+      }
     }
   }
 };
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
+
 html,
 body {
   height: 100%;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Slabo 27px', serif;
 }
 
 body {
