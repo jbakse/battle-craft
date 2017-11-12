@@ -1,5 +1,5 @@
 <template>
-  <li v-on:click="onClick">{{name}}</li>
+  <div v-on:click="onClick">{{name}}</div>
 </template>
 
 <script>
@@ -16,7 +16,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-li {
+div {
   width: 60px;
   height: 60px;
 
