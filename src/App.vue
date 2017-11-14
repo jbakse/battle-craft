@@ -54,35 +54,17 @@ export default {
       let b = crafter.workbench.shift();
       let c = crafter.workbench.shift();
       let { items, attacks, buffs } = crafter.craft(a, b, c);
+      crafter.applyCraft({items, attacks, buffs});
 
-      // add items to inventory
-      items.forEach(item => {
-        console.log(`${crafter} crafted a level ${item.level} ${item.name}`);
-        crafter.inventory.push(item);
-      });
-
-      // dole out damage
-      if (attacks.length > 0) {
-        console.log(`${crafter} attacks ${crafter.target}`);
-        attacks.forEach(attack => {
-          crafter.target.applyAttack(attack);
-        });
-      }
-
-      // apply buffs
-      if (buffs.length > 0) {
-        console.log(`${crafter} buffs ${crafter}`);
-        buffs.forEach(buff => {
-          crafter.applyBuff(buff);
-        });
-      }
+      crafter.target.ai();
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss">
 @import url('https://fonts.googleapis.com/css?family=Slabo+27px');
+
 
 
 html,
@@ -90,6 +72,8 @@ body {
   height: 100%;
   font-family: 'Slabo 27px', serif;
 }
+
+
 
 body {
   margin: 0;

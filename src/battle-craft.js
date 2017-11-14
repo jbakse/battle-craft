@@ -8,7 +8,7 @@ export * from './Attack';
 export let data = {};
 
 let character1 = new Character("justin");
-let character2 = new Character("greg");
+let character2 = new Character("skeleton");
 data.character1 = character1;
 data.character2 = character2;
 
@@ -16,12 +16,12 @@ character1.target = character2;
 character1.inventory.push(Item.create("pebble"));
 character1.inventory.push(Item.create("pebble"));
 character1.inventory.push(Item.create("pebble"));
+character1.inventory.push(Item.create("pebble"));
+character1.inventory.push(Item.create("pebble"));
+character1.inventory.push(Item.create("pebble"));
+character1.inventory.push(Item.create("pebble"));
+character1.inventory.push(Item.create("pebble"));
 character1.inventory.push(Item.create("rock"));
-character1.inventory.push(Item.create("rock"));
-character1.inventory.push(Item.create("rock"));
-character1.inventory.push(Item.create("boulder"));
-character1.inventory.push(Item.create("boulder"));
-character1.inventory.push(Item.create("boulder"));
 character1.inventory.push(Item.create("glue"));
 character1.inventory.push(Item.create("glue"));
 character1.inventory.push(Item.create("superglue"));
@@ -30,18 +30,21 @@ character1.inventory.push(Item.create("gem"));
 character1.inventory.push(Item.create("gem"));
 
 character2.target = character1;
-character2.inventory.push(Item.create("pebble"));
-character2.inventory.push(Item.create("pebble"));
-character2.inventory.push(Item.create("pebble"));
-character2.inventory.push(Item.create("rock"));
-character2.inventory.push(Item.create("rock"));
-character2.inventory.push(Item.create("rock"));
-character2.inventory.push(Item.create("boulder"));
-character2.inventory.push(Item.create("boulder"));
-character2.inventory.push(Item.create("boulder"));
+character2.inventory.push(Item.create("bone"));
+character2.inventory.push(Item.create("bone"));
+character2.inventory.push(Item.create("bone"));
+
 character2.inventory.push(Item.create("glue"));
-character2.inventory.push(Item.create("glue"));
-character2.inventory.push(Item.create("superglue"));
-character2.inventory.push(Item.create("gem"));
-character2.inventory.push(Item.create("gem"));
-character2.inventory.push(Item.create("gem"));
+character2.inventory.push(Item.create("bone"));
+character2.inventory.push(Item.create("rock"));
+
+character2.inventory.push(Item.create("bone"));
+character2.inventory.push(Item.create("bone"));
+
+character2.inventory.push(Item.create("rock"));
+character2.inventory.push(Item.create("rock"));
+character2.inventory.push(Item.create("rock"));
+
+character2.inventory.push(Item.create("rock"));
+character2.inventory.push(Item.create("rock"));
+character2.inventory.push(Item.create("rock"));

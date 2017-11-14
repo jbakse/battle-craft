@@ -88,5 +88,9 @@ let itemLibrary = {
   boulder: new Item("boulder", 4, "attack"),
   glue: new Item("glue", 1, "craft"),
   superglue: new Item("superglue", 2, "craft"),
-  gem: new Item("gem", 2, "buff")
+  gem: new Item("gem", 2, "buff"),
+
+  bone: new Item("bone", 1, "attack"),
+  club: new Item("club", 2, "attack")
+
 }

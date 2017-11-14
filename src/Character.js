@@ -98,4 +98,50 @@ export class Character {
     console.log(`${this} gets ${buff} buff`);
     this.buffs.push(buff);
   }
+
+  applyCraft ({items = [], attacks = [], buffs = []}) {
+    // add items to inventory
+    items.forEach(item => {
+      console.log(`${this} crafted a level ${item.level} ${item.name}`);
+      this.inventory.unshift(item);
+    });
+
+    // dole out damage
+    if (attacks.length > 0) {
+      console.log(`${this} attacks ${this.target}`);
+      attacks.forEach(attack => {
+        this.target.applyAttack(attack);
+      });
+    }
+
+    // apply buffs
+    if (buffs.length > 0) {
+      console.log(`${this} buffs ${this}`);
+      buffs.forEach(buff => {
+        this.applyBuff(buff);
+      });
+    }
+  }
+
+  ai () {
+    console.log("ai");
+
+    setTimeout(() => {
+      this.workbench.push(this.inventory.shift());
+    }, 1000);
+    setTimeout(() => {
+      this.workbench.push(this.inventory.shift());
+    }, 1500);
+    setTimeout(() => {
+      this.workbench.push(this.inventory.shift());
+    }, 2000);
+    setTimeout(() => {
+      let a = this.workbench.shift();
+      let b = this.workbench.shift();
+      let c = this.workbench.shift();
+
+      let result = this.craft(a, b, c);
+      this.applyCraft(result);
+    }, 3000);
+  }
 }

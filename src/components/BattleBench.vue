@@ -76,10 +76,14 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
+
+@import "../settings.scss";
+
 .battle-bench {
   width: 320px;
   background: white;
+
 }
 
 .workbench {
