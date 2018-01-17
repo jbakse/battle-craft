@@ -7,44 +7,57 @@ export * from './Attack';
 
 export let data = {};
 
-let character1 = new Character("justin");
-let character2 = new Character("skeleton");
+let character1 = new Character("eric");
+let character2 = new Character("spooky skeleton");
 data.character1 = character1;
 data.character2 = character2;
 
 character1.target = character2;
-character1.inventory.push(Item.create("pebble"));
-character1.inventory.push(Item.create("pebble"));
-character1.inventory.push(Item.create("pebble"));
-character1.inventory.push(Item.create("pebble"));
-character1.inventory.push(Item.create("pebble"));
-character1.inventory.push(Item.create("pebble"));
-character1.inventory.push(Item.create("pebble"));
-character1.inventory.push(Item.create("pebble"));
-character1.inventory.push(Item.create("rock"));
-character1.inventory.push(Item.create("glue"));
-character1.inventory.push(Item.create("glue"));
-character1.inventory.push(Item.create("superglue"));
-character1.inventory.push(Item.create("gem"));
-character1.inventory.push(Item.create("gem"));
-character1.inventory.push(Item.create("gem"));
-
 character2.target = character1;
-character2.inventory.push(Item.create("bone"));
-character2.inventory.push(Item.create("bone"));
-character2.inventory.push(Item.create("bone"));
 
-character2.inventory.push(Item.create("glue"));
-character2.inventory.push(Item.create("bone"));
-character2.inventory.push(Item.create("rock"));
+// character1.hp = 10;
+// character2.hp = 10;
 
-character2.inventory.push(Item.create("bone"));
-character2.inventory.push(Item.create("bone"));
+for (let i = 0; i < 10; i++) {
+  let r = Math.random();
+  if (r < 0.4) {
+    giveBoth("pebble");
+    // giveBoth("pebble");
+  } else if (r < 0.6) {
+    // giveBoth("rock");
+    giveBoth("rock");
+  } else if (r < 0.7) {
+    giveBoth("glue");
+  } else if (r < 0.75) {
+    giveBoth("atk_gem");
+  } else if (r < 0.8) {
+    giveBoth("def_gem");
+  }
+}
 
-character2.inventory.push(Item.create("rock"));
-character2.inventory.push(Item.create("rock"));
-character2.inventory.push(Item.create("rock"));
+// giveBoth("pebble");
+// giveBoth("pebble");
+// giveBoth("pebble");
+// giveBoth("pebble");
+// giveBoth("pebble");
 
-character2.inventory.push(Item.create("rock"));
-character2.inventory.push(Item.create("rock"));
-character2.inventory.push(Item.create("rock"));
+// giveBoth("rock");
+// giveBoth("rock");
+// giveBoth("glue");
+// giveBoth("rock");
+// giveBoth("glue");
+
+// giveBoth("rock");
+// giveBoth("rock");
+// giveBoth("rock");
+
+// giveBoth("glue");
+// giveBoth("glue");
+
+// giveBoth("atk_gem");
+// giveBoth("def_gem");
+
+function giveBoth (name) {
+  character1.inventory.push(Item.create(name));
+  character2.inventory.push(Item.create(name));
+}

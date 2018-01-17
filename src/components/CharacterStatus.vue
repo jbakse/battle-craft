@@ -1,8 +1,8 @@
 <template>
   <div class="character-status">
     <div class="name">{{name}}</div>
-    <div class="armor">Armor: {{armor}}</div>
-    <div class="attack">Attack: {{attack}}</div>
+    <div class="defense">Defense: {{defense}} ({{calcDefense}})</div>
+    <div class="attack">Attack: {{attack}} ({{calcAttack}})</div>
     HPs
     <transition-group name="list" tag="div" class="hp" v-bind:class="hpClass">
       <span class="list-item" v-bind:key="n" v-for="n in hp0">{{ n }} </span>
@@ -15,7 +15,7 @@
         class = "buff list-item"
         v-for="b in buffs" 
         v-bind:name="b" 
-        v-bind:key="b"
+        v-bind:key="b.toString()"
         >
         {{b.toString()}}
       </span>
@@ -30,7 +30,7 @@
 <script>
 export default {
   name: "characterStatus",
-  props: ["name", "hp", "armor", "attack", "buffs"],
+  props: ["name", "hp", "defense", "calcDefense", "attack", "calcAttack", "buffs"],
   computed: {
     hp0 () {
       return Math.max(0, this.hp);

@@ -8,7 +8,7 @@ export class Buff {
   toString () {
     let desc = "";
     _.forOwn(this.effects, (v, k) => {
-      desc += `${k}:${v}`;
+      desc += `${k} +${v}`;
     });
     return desc;
   }

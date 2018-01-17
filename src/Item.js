@@ -17,11 +17,11 @@ import * as _ from "lodash";
 let itemId = 0;
 export class Item {
     id = 0;
-    name;
-    level;
-    type;
-    elements;
-    specials;
+    // name;
+    // level;
+    // type;
+    // elements;
+    // specials;
 
     constructor (name, level = 0, type = "craft") {
       let defaults = {
@@ -29,7 +29,7 @@ export class Item {
         level: 0,
         type: "craft",
         elements: [],
-        craft: []
+        specials: []
       }
 
       let params = {
@@ -39,7 +39,7 @@ export class Item {
       }
 
       if (_.isObject(name)) {
-        // discard extra properties
+        // keep just known properties
         params = _.pick(name, _.keys(defaults));
       }
 
@@ -86,11 +86,16 @@ let itemLibrary = {
   pebble: new Item("pebble", 1, "attack"),
   rock: new Item("rock", 2, "attack"),
   boulder: new Item("boulder", 4, "attack"),
+  bone: new Item("bone", 1, "attack"),
+  club: new Item("club", 2, "attack"),
+
   glue: new Item("glue", 1, "craft"),
   superglue: new Item("superglue", 2, "craft"),
-  gem: new Item("gem", 2, "buff"),
 
-  bone: new Item("bone", 1, "attack"),
-  club: new Item("club", 2, "attack")
+  atk_gem: new Item("atk gem", 2, "buff"),
+  def_gem: new Item("def gem", 2, "buff")
 
 }
+
+itemLibrary.def_gem.specials.push("defense");
+itemLibrary.atk_gem.specials.push("attack");

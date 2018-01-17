@@ -10,6 +10,8 @@
       >
       </battle-bench>
       <button class="craft" v-on:click="craft(character1)">Craft!</button>
+       <br/>
+      <button class="craft" v-on:click="reup(character1)">reup!</button>
     </div>
     <div class="screen">
       <character-status
@@ -21,12 +23,18 @@
       >
       </battle-bench>
       <button class="craft" v-on:click="craft(character2)">Craft!</button>
+      <br/>
+      <button class="craft" v-on:click="reup(character2)">reup!</button>
+      
+
     </div>
 
   </div>
 </template>
 
 <script>
+
+import { wait } from "./util.js";
 import { data } from "./battle-craft.js";
 import BattleBench from "./components/BattleBench";
 import CharacterStatus from "./components/CharacterStatus";
@@ -44,19 +52,19 @@ export default {
     };
   },
   methods: {
-    craft (crafter) {
+    async reup (crafter) {
+      await crafter.onReup();
+    },
+
+    async craft (crafter) {
       if (crafter.workbench.length !== 3) {
         return console.error("wrong number of items");
       }
 
-      // craft
-      let a = crafter.workbench.shift();
-      let b = crafter.workbench.shift();
-      let c = crafter.workbench.shift();
-      let { items, attacks, buffs } = crafter.craft(a, b, c);
-      crafter.applyCraft({items, attacks, buffs});
+      await crafter.onCraft();
 
-      crafter.target.ai();
+      // await wait(500);
+      // await crafter.target.ai();
     }
   }
 };
